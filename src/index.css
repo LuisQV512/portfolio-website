@@ -109,3 +109,8 @@ body {
 .skip-to-main:focus {
   top: 0;
 }
+
+/* Profile image positioning */
+.profile-image {
+  object-position: center 20%;
+}

@@ -18,8 +18,7 @@ const Hero = () => {
             <img
               src="/IMG_0610.JPG"
               alt="Luis Quiroz Viveros"
-              className="w-48 h-48 mx-auto mb-8 rounded-full object-cover shadow-2xl"
-              style={{ objectPosition: 'center 20%' }}
+              className="w-48 h-48 mx-auto mb-8 rounded-full object-cover shadow-2xl profile-image"
             />
           </picture>
         </motion.div>
