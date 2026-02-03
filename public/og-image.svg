@@ -1,0 +1,53 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#grad)"/>
+
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="150" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="1100" cy="530" r="200" fill="rgba(255,255,255,0.05)"/>
+
+  <!-- Main content container -->
+  <rect x="80" y="180" width="1040" height="280" fill="rgba(255,255,255,0.1)" rx="20"/>
+
+  <!-- Name -->
+  <text
+    x="600"
+    y="310"
+    font-family="Arial, sans-serif"
+    font-size="68"
+    font-weight="bold"
+    fill="white"
+    text-anchor="middle">
+    Luis Quiroz Viveros
+  </text>
+
+  <!-- Title -->
+  <text
+    x="600"
+    y="375"
+    font-family="Arial, sans-serif"
+    font-size="36"
+    fill="rgba(255,255,255,0.9)"
+    text-anchor="middle">
+    Software Engineer II @ USAA
+  </text>
+
+  <!-- Subtitle -->
+  <text
+    x="600"
+    y="420"
+    font-family="Arial, sans-serif"
+    font-size="24"
+    fill="rgba(255,255,255,0.8)"
+    text-anchor="middle">
+    Full-Stack Development • Cloud Migrations • Enterprise Systems
+  </text>
+</svg>
