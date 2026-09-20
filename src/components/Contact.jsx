@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { HiMail, HiLocationMarker } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import SectionTitle from './SectionTitle';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -93,19 +94,13 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-white">
-      <div className="section-container">
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Get In Touch
-        </motion.h2>
+    <section id="contact" className="relative bg-slate-900 overflow-hidden">
+      <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_bottom,black,transparent_70%)]" />
+      <div className="section-container relative">
+        <div className="max-w-5xl mx-auto">
+        <SectionTitle>Get In Touch</SectionTitle>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-8 md:p-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -113,21 +108,21 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              Let's Work Together
+            <h3 className="text-3xl font-bold text-white mb-6">
+              Let's Connect
             </h3>
-            <p className="text-gray-700 text-lg mb-8">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
+            <p className="text-slate-300 text-lg mb-8">
+              I'm always open to discussing new opportunities, technical challenges,
+              or connecting with other engineers.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-12 h-12 bg-fill rounded-full flex items-center justify-center">
                   <HiMail size={24} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
+                  <h4 className="font-semibold text-white">Email</h4>
                   <a
                     href="mailto:lquirozviveros@gmail.com"
                     className="text-primary hover:underline"
@@ -138,25 +133,25 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-12 h-12 bg-fill rounded-full flex items-center justify-center">
                   <HiLocationMarker size={24} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Location</h4>
-                  <p className="text-gray-700">Relocating to Boston, Spring 2026</p>
+                  <h4 className="font-semibold text-white">Location</h4>
+                  <p className="text-slate-300">Boston, MA</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="mt-8">
-              <h4 className="font-semibold text-gray-900 mb-4">Connect With Me</h4>
+              <h4 className="font-semibold text-white mb-4">Connect With Me</h4>
               <div className="flex gap-4">
                 <a
                   href="https://github.com/LuisQV512"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-primary hover:text-white transition-all duration-300"
+                  className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-slate-300 hover:bg-fill hover:text-white hover:border-fill transition-all duration-300"
                 >
                   <FaGithub size={24} />
                 </a>
@@ -164,7 +159,7 @@ const Contact = () => {
                   href="https://linkedin.com/in/luisquirozviveros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-primary hover:text-white transition-all duration-300"
+                  className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-slate-300 hover:bg-fill hover:text-white hover:border-fill transition-all duration-300"
                 >
                   <FaLinkedin size={24} />
                 </a>
@@ -181,7 +176,7 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
                   Your Name
                 </label>
                 <input
@@ -193,20 +188,20 @@ const Contact = () => {
                   required
                   aria-invalid={errors.name ? 'true' : 'false'}
                   aria-describedby={errors.name ? 'name-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-3 bg-white/5 text-white placeholder:text-slate-400 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 ${
+                    errors.name ? 'border-red-500' : 'border-slate-700'
                   }`}
                   placeholder="John Doe"
                 />
                 {errors.name && (
-                  <p id="name-error" role="alert" className="mt-1 text-sm text-red-600">
+                  <p id="name-error" role="alert" className="mt-1 text-sm text-red-400">
                     {errors.name}
                   </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
                   Your Email
                 </label>
                 <input
@@ -218,20 +213,20 @@ const Contact = () => {
                   required
                   aria-invalid={errors.email ? 'true' : 'false'}
                   aria-describedby={errors.email ? 'email-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-3 bg-white/5 text-white placeholder:text-slate-400 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 ${
+                    errors.email ? 'border-red-500' : 'border-slate-700'
                   }`}
                   placeholder="john@example.com"
                 />
                 {errors.email && (
-                  <p id="email-error" role="alert" className="mt-1 text-sm text-red-600">
+                  <p id="email-error" role="alert" className="mt-1 text-sm text-red-400">
                     {errors.email}
                   </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
                   Message
                 </label>
                 <textarea
@@ -243,13 +238,13 @@ const Contact = () => {
                   rows={5}
                   aria-invalid={errors.message ? 'true' : 'false'}
                   aria-describedby={errors.message ? 'message-error' : undefined}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none ${
-                    errors.message ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-3 bg-white/5 text-white placeholder:text-slate-400 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none ${
+                    errors.message ? 'border-red-500' : 'border-slate-700'
                   }`}
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && (
-                  <p id="message-error" role="alert" className="mt-1 text-sm text-red-600">
+                  <p id="message-error" role="alert" className="mt-1 text-sm text-red-400">
                     {errors.message}
                   </p>
                 )}
@@ -271,8 +266,8 @@ const Contact = () => {
                   animate={{ opacity: 1 }}
                   className={`text-center font-medium ${
                     status.includes('wrong') || status.includes('Oops')
-                      ? 'text-red-600'
-                      : 'text-green-600'
+                      ? 'text-red-400'
+                      : 'text-green-400'
                   }`}
                 >
                   {status}
@@ -280,6 +275,7 @@ const Contact = () => {
               )}
             </form>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

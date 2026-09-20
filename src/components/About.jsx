@@ -1,21 +1,67 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { FaPython, FaJsSquare, FaJava, FaReact, FaNode, FaGitAlt, FaAws, FaDocker, FaMicrosoft } from 'react-icons/fa';
-import { SiPostgresql, SiSpringboot, SiKubernetes } from 'react-icons/si';
+import { SiPostgresql, SiSpringboot, SiKubernetes, SiTypescript, SiDotnet } from 'react-icons/si';
+import SectionTitle from './SectionTitle';
+
+const CountUpStat = ({ value, suffix, label }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(count, value, { duration: 1.2, ease: 'easeOut' });
+    return controls.stop;
+  }, [isInView, value, count]);
+
+  return (
+    <div ref={ref} className="text-center p-6 bg-white/5 border border-white/10 rounded-lg">
+      <h4 className="text-4xl md:text-5xl font-bold text-primary mb-1">
+        <motion.span>{rounded}</motion.span>{suffix}
+      </h4>
+      <p className="text-slate-400 text-sm md:text-base">{label}</p>
+    </div>
+  );
+};
 
 const About = () => {
-  const skills = [
-    { name: 'Java', icon: <FaJava size={40} />, color: 'text-red-500' },
-    { name: 'JavaScript', icon: <FaJsSquare size={40} />, color: 'text-yellow-500' },
-    { name: 'Python', icon: <FaPython size={40} />, color: 'text-blue-500' },
-    { name: 'Spring Boot', icon: <SiSpringboot size={40} />, color: 'text-green-600' },
-    { name: 'React', icon: <FaReact size={40} />, color: 'text-cyan-500' },
-    { name: 'Node.js', icon: <FaNode size={40} />, color: 'text-green-500' },
-    { name: 'PostgreSQL', icon: <SiPostgresql size={40} />, color: 'text-blue-600' },
-    { name: 'AWS', icon: <FaAws size={40} />, color: 'text-orange-500' },
-    { name: 'Azure', icon: <FaMicrosoft size={40} />, color: 'text-blue-500' },
-    { name: 'Docker', icon: <FaDocker size={40} />, color: 'text-blue-400' },
-    { name: 'Kubernetes', icon: <SiKubernetes size={40} />, color: 'text-blue-600' },
-    { name: 'Git', icon: <FaGitAlt size={40} />, color: 'text-orange-600' },
+  const skillGroups = [
+    {
+      category: 'Languages',
+      items: [
+        { name: 'Java', icon: <FaJava size={18} /> },
+        { name: 'TypeScript', icon: <SiTypescript size={18} /> },
+        { name: 'JavaScript', icon: <FaJsSquare size={18} /> },
+        { name: 'Python', icon: <FaPython size={18} /> },
+      ],
+    },
+    {
+      category: 'Frameworks',
+      items: [
+        { name: '.NET', icon: <SiDotnet size={18} /> },
+        { name: 'Spring Boot', icon: <SiSpringboot size={18} /> },
+        { name: 'React', icon: <FaReact size={18} /> },
+        { name: 'Node.js', icon: <FaNode size={18} /> },
+      ],
+    },
+    {
+      category: 'Cloud & Infra',
+      items: [
+        { name: 'AWS', icon: <FaAws size={18} /> },
+        { name: 'Azure', icon: <FaMicrosoft size={18} /> },
+        { name: 'Docker', icon: <FaDocker size={18} /> },
+        { name: 'Kubernetes', icon: <SiKubernetes size={18} /> },
+      ],
+    },
+    {
+      category: 'Data & Tools',
+      items: [
+        { name: 'PostgreSQL', icon: <SiPostgresql size={18} /> },
+        { name: 'Git', icon: <FaGitAlt size={18} /> },
+      ],
+    },
   ];
 
   const containerVariants = {
@@ -34,17 +80,10 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="bg-white">
-      <div className="section-container">
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          About Me
-        </motion.h2>
+    <section id="about" className="relative bg-slate-900 overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+      <div className="section-container relative">
+        <SectionTitle>About Me</SectionTitle>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Bio Section */}
@@ -54,20 +93,21 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-bold text-white mb-4">
               Professional Summary
             </h3>
-            <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
+            <div className="space-y-4 text-slate-300 text-lg leading-relaxed">
               <p>
-                I'm a Software Engineer II at USAA, specializing in full-stack modernization solutions
-                for high-traffic applications. I develop Java Spring Boot RESTful APIs on AWS infrastructure
-                and React.js user interfaces that serve thousands of users monthly.
+                I'm a Software Engineer at Dewar Insurance, leading full-stack modernization of a legacy
+                COBOL-based internal system. I'm rebuilding it with a .NET backend and TypeScript front end,
+                connecting third-party platforms and supporting the internal, employee-facing workflows the
+                business runs on.
               </p>
               <p>
-                With over 3 years of experience at companies like USAA and General Motors, I've executed
+                With over 4 years of experience across Dewar Insurance, USAA, and General Motors, I've executed
                 end-to-end cloud migrations, optimized database performance, and implemented CI/CD pipelines
-                that improve deployment consistency. My expertise spans Java, JavaScript, Python, and modern
-                cloud technologies including Azure and AWS.
+                that improve deployment consistency. My expertise spans Java, C#/.NET, JavaScript/TypeScript,
+                Python, and modern cloud technologies including Azure and AWS.
               </p>
               <p>
                 I'm passionate about building scalable systems, implementing observability solutions, and
@@ -83,47 +123,53 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl font-bold text-white mb-6">
               Technical Skills
             </h3>
             <motion.div
-              className="grid grid-cols-3 gap-6"
+              className="space-y-5"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  variants={itemVariants}
-                  className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow duration-300 group"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className={`${skill.color} group-hover:scale-110 transition-transform duration-300`}>
-                    {skill.icon}
+              {skillGroups.map((group) => (
+                <motion.div key={group.category} variants={itemVariants}>
+                  <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+                    {group.category}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className="group inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-medium text-slate-300 hover:text-primary hover:border-primary/40 transition-all duration-300"
+                      >
+                        <span className="text-slate-500 group-hover:text-primary transition-colors duration-300">{skill.icon}</span>
+                        {skill.name}
+                      </span>
+                    ))}
                   </div>
-                  <span className="mt-2 text-sm font-medium text-gray-700">
-                    {skill.name}
-                  </span>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Experience Highlights */}
+        {/* Credibility strip */}
         <motion.div
-          className="mt-16 flex justify-center"
+          className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-center p-8 bg-blue-50 rounded-lg max-w-xs w-full">
-            <h4 className="text-5xl font-bold text-primary mb-2">3+</h4>
-            <p className="text-gray-700 text-lg">Years of Experience</p>
-          </div>
+          {[
+            { value: 4, suffix: '+', label: 'Years Experience' },
+            { value: 3, suffix: '', label: 'Companies' },
+            { value: 14, suffix: '+', label: 'Technologies' },
+          ].map((stat) => (
+            <CountUpStat key={stat.label} {...stat} />
+          ))}
         </motion.div>
       </div>
     </section>
