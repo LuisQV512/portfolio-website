@@ -24,10 +24,9 @@ const Experience = () => {
       period: 'November 2024 - March 2026',
       current: false,
       highlights: [
-        'Developed full-stack modernization solutions for high-traffic claim intake across Property & Claims applications serving thousands of members monthly',
-        'Developed Java Spring Boot RESTful APIs on AWS infrastructure, replacing legacy systems to support high-volume claim processing',
-        'Implemented observability solutions using Datadog and Grafana, creating dashboards and logging infrastructure that accelerated incident detection and resolution',
-        'Collaborated with cross-functional stakeholders to translate business requirements into production-ready features'
+        'Rebuilt Property & Claims intake flows (roadside assistance, glass replacement, auto claims) from a legacy Java, non-React UI into React front ends, implementing specs from business and design teams',
+        'Built Java Spring Boot REST APIs on AWS to replace legacy claim-processing services, including third-party API integrations with payload transformation and data synchronization',
+        'Built Datadog and Grafana dashboards, saved queries, and logging the team used to detect and diagnose outages, timeouts, and errors in claim services'
       ]
     },
     {
@@ -40,11 +39,9 @@ const Experience = () => {
       period: 'January 2022 - June 2024',
       current: false,
       highlights: [
-        'Executed end-to-end migration of legacy Java applications to Azure, maintaining system availability with zero service disruption',
-        'Developed and maintained Java-based RESTful APIs and microservices that handled high traffic volumes during peak demand periods',
-        'Implemented automated CI/CD pipelines using GitLab CI and Backstage templates, improving deployment consistency for Azure-based microservices',
-        'Optimized database performance via SQL query tuning and indexing, reducing query response times across PostgreSQL, Oracle, and Azure SQL databases',
-        'Developed migration playbooks and support protocols that decreased post-migration issue resolution time by 30%'
+        'Migrated dozens of Java microservices from legacy Java versions to modern Java on Azure App Service, and wrote migration playbooks and support runbooks for post-migration issues',
+        'Built GitLab CI pipelines and Backstage templates to standardize Azure microservice builds and deployments',
+        'Developed and maintained Java REST APIs and microservices backed by PostgreSQL, Oracle, and Azure SQL'
       ]
     }
   ];
