@@ -11,10 +11,10 @@ const Experience = () => {
       period: 'March 2026 - Present',
       current: true,
       highlights: [
-        'Leading full-stack modernization of a legacy COBOL-based internal system, rebuilding it with a .NET backend and TypeScript front end',
-        'Designing and developing RESTful APIs in .NET to support internal, employee-facing tools used to run core business operations',
-        'Integrating third-party platforms into the new system as part of the broader modernization effort',
-        'Owning end-to-end delivery across backend and frontend for a system used business-wide'
+        'Helping replace a legacy COBOL system with a new .NET, Angular, and Azure platform for the full office',
+        'Building integrations with school information system and tuition vendor platforms, spanning API design, authentication, and data sync',
+        'Shaping architecture and engineering practices as one of two full-time engineers',
+        'Mentoring interns from onboarding through production code'
       ]
     },
     {
