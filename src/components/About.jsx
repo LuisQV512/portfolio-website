@@ -106,7 +106,7 @@ const About = () => {
               </p>
               <p>
                 With over 4 years of experience across Dewar Insurance, USAA, and General Motors, I've also
-                optimized database performance and built observability and CI/CD tooling. My expertise spans Java, C#/.NET, JavaScript/TypeScript, Python, and cloud
+                built observability, CI/CD, and testing tooling. My expertise spans Java, C#/.NET, JavaScript/TypeScript, Python, and cloud
                 platforms including Azure and AWS.
               </p>
               <p>
