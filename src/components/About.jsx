@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
-import { FaPython, FaJsSquare, FaJava, FaReact, FaNode, FaGitAlt, FaAws, FaDocker, FaMicrosoft } from 'react-icons/fa';
-import { SiPostgresql, SiSpringboot, SiKubernetes, SiTypescript, SiDotnet } from 'react-icons/si';
+import { FaPython, FaJsSquare, FaJava, FaReact, FaGitAlt, FaAws, FaDocker, FaMicrosoft } from 'react-icons/fa';
+import { SiPostgresql, SiSpringboot, SiKubernetes, SiTypescript, SiDotnet, SiAngular, SiSharp, SiGithubactions } from 'react-icons/si';
 import SectionTitle from './SectionTitle';
 
 const CountUpStat = ({ value, suffix, label }) => {
@@ -32,6 +32,7 @@ const About = () => {
       category: 'Languages',
       items: [
         { name: 'Java', icon: <FaJava size={18} /> },
+        { name: 'C#', icon: <SiSharp size={18} /> },
         { name: 'TypeScript', icon: <SiTypescript size={18} /> },
         { name: 'JavaScript', icon: <FaJsSquare size={18} /> },
         { name: 'Python', icon: <FaPython size={18} /> },
@@ -40,10 +41,10 @@ const About = () => {
     {
       category: 'Frameworks',
       items: [
-        { name: '.NET', icon: <SiDotnet size={18} /> },
+        { name: '.NET / EF Core', icon: <SiDotnet size={18} /> },
+        { name: 'Angular', icon: <SiAngular size={18} /> },
         { name: 'Spring Boot', icon: <SiSpringboot size={18} /> },
         { name: 'React', icon: <FaReact size={18} /> },
-        { name: 'Node.js', icon: <FaNode size={18} /> },
       ],
     },
     {
@@ -51,6 +52,7 @@ const About = () => {
       items: [
         { name: 'AWS', icon: <FaAws size={18} /> },
         { name: 'Azure', icon: <FaMicrosoft size={18} /> },
+        { name: 'GitHub Actions', icon: <SiGithubactions size={18} /> },
         { name: 'Docker', icon: <FaDocker size={18} /> },
         { name: 'Kubernetes', icon: <SiKubernetes size={18} /> },
       ],
@@ -98,16 +100,14 @@ const About = () => {
             </h3>
             <div className="space-y-4 text-slate-300 text-lg leading-relaxed">
               <p>
-                I'm a Software Engineer at Dewar Insurance, leading full-stack modernization of a legacy
-                COBOL-based internal system. I'm rebuilding it with a .NET backend and TypeScript front end,
-                connecting third-party platforms and supporting the internal, employee-facing workflows the
-                business runs on.
+                I'm a full-stack software engineer focused on modernizing legacy systems. At Dewar Insurance,
+                I'm helping replace a COBOL system with a new .NET and Angular platform on Azure. Before that,
+                I modernized claim intake at USAA and migrated Java applications to Azure at General Motors.
               </p>
               <p>
-                With over 4 years of experience across Dewar Insurance, USAA, and General Motors, I've executed
-                end-to-end cloud migrations, optimized database performance, and implemented CI/CD pipelines
-                that improve deployment consistency. My expertise spans Java, C#/.NET, JavaScript/TypeScript,
-                Python, and modern cloud technologies including Azure and AWS.
+                With over 4 years of experience across Dewar Insurance, USAA, and General Motors, I've also
+                optimized database performance and built observability and CI/CD tooling. My expertise spans Java, C#/.NET, JavaScript/TypeScript, Python, and cloud
+                platforms including Azure and AWS.
               </p>
               <p>
                 I'm passionate about building scalable systems, implementing observability solutions, and
@@ -157,7 +157,7 @@ const About = () => {
 
         {/* Credibility strip */}
         <motion.div
-          className="mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto"
+          className="mt-16 grid grid-cols-2 gap-4 md:gap-8 max-w-md mx-auto"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -166,7 +166,6 @@ const About = () => {
           {[
             { value: 4, suffix: '+', label: 'Years Experience' },
             { value: 3, suffix: '', label: 'Companies' },
-            { value: 14, suffix: '+', label: 'Technologies' },
           ].map((stat) => (
             <CountUpStat key={stat.label} {...stat} />
           ))}

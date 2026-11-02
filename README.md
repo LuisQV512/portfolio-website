@@ -18,7 +18,7 @@ A modern, responsive personal portfolio website built with React, Vite, Tailwind
 
 1. **Hero** - Introduction with profile photo and call-to-action buttons
 2. **About** - Professional summary and technical skills grid
-3. **Experience** - Work history at USAA and General Motors
+3. **Experience** - Work history at Dewar Insurance, USAA, and General Motors
 4. **Education** - University degree information
 5. **Resume** - Downloadable PDF resume
 6. **Contact** - Working contact form with validation and social links
