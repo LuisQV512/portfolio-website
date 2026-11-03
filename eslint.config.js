@@ -24,7 +24,7 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['error', {
-        varsIgnorePattern: '^[A-Z_]|^motion$',
+        varsIgnorePattern: '^[A-Z_]',
         args: 'after-used',
         ignoreRestSiblings: true
       }],

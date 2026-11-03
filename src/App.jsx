@@ -1,38 +1,74 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Experience from './components/Experience';
-import Education from './components/Education';
-import Resume from './components/Resume';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { profile, experience, skills, education } from './content';
 
-function App() {
+const Entry = ({ title, years, subtitle, children }) => (
+  <article className="entry">
+    <header>
+      <h3>{title}</h3>
+      <span className="muted">{years}</span>
+    </header>
+    {subtitle && <p className="muted">{subtitle}</p>}
+    {children}
+  </article>
+);
+
+const Section = ({ title, children }) => (
+  <section aria-label={title}>
+    <h2>{title}</h2>
+    {children}
+  </section>
+);
+
+const isExternal = (href) => href.startsWith('http') || href.endsWith('.pdf');
+
+export default function App() {
   return (
-    <div className="App">
-      <div
-        aria-hidden="true"
-        className="fixed inset-0 z-[60] pointer-events-none opacity-[0.035] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-        }}
-      />
-      <a href="#main-content" className="skip-to-main">
-        Skip to main content
-      </a>
-      <Navbar />
-      <main id="main-content">
-        <Hero />
-        <About />
-        <Experience />
-        <Education />
-        <Resume />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <main>
+      <header className="intro">
+        <img src={profile.avatar} alt="" width="56" height="56" />
+        <div>
+          <h1>{profile.name}</h1>
+          <p className="muted">
+            {profile.role} · {profile.location}
+          </p>
+        </div>
+      </header>
+
+      <nav aria-label="Links" className="links">
+        {profile.links.map(({ label, href }) => (
+          <a key={label} href={href} {...(isExternal(href) && { target: '_blank', rel: 'noopener noreferrer' })}>
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      <Section title="Experience">
+        {experience.map((job) => (
+          <Entry key={job.company} title={job.company} years={job.years} subtitle={job.roles.join(' → ')}>
+            <ul>
+              {job.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </Entry>
+        ))}
+      </Section>
+
+      <Section title="Skills">
+        <dl className="skills">
+          {skills.map(({ group, items }) => (
+            <div key={group}>
+              <dt className="muted">{group}</dt>
+              <dd>{items.join(', ')}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section title="Education">
+        {education.map((item) => (
+          <Entry key={item.school} title={item.school} years={item.years} subtitle={item.degree} />
+        ))}
+      </Section>
+    </main>
   );
 }
-
-export default App;
